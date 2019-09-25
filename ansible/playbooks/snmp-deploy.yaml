@@ -1,0 +1,22 @@
+---
+- name: "PLAY 1: CONFIGURE SNMP"
+  hosts: all
+  gather_facts: false
+  connection: network_cli
+  tasks:
+    - name: "TASK 1: CONFIGURE SNMP USER"
+      nxos_snmp_user:
+         user: "{{ item.user }}"
+         authentication: "{{ item.auth }}"
+         encrypt: "{{ item.encrypt }}"
+         privacy: "{{ item.privacy }}"
+         pwd: "{{ item.pwd }}"
+      with_items: "{{ snmp_users }}"
+      notify: config_changed
+      register: cli_result
+
+  handlers:
+    - name: "HANDLER 1: SAVE CONFIGURATION"
+      listen: config_changed
+      ios_config:
+        save_when: always

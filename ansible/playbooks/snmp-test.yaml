@@ -1,0 +1,22 @@
+---
+- name: "PLAY 1: TEST SNMP"
+  hosts: all
+  connection: local
+  tasks:
+    - name: "TASK 1: GATHER FACTS VIA SNMP"
+      snmp_facts:
+        host: "{{ ansible_host }}"
+        version: v3
+        level: authPriv
+        integrity: sha
+        privacy: aes
+        username: "{{ item.user }}"
+        authkey: "{{ item.pwd }}"
+        privkey: "{{ item.privacy }}"
+      with_items: "{{ snmp_users }}"
+      delegate_to: localhost
+
+    - name: "TASK 2: VALIDATE SNMP RESPONSE"
+      fail:
+        msg: "Cisco NX-OS not in ansible_sysdescr"
+      when: '"Cisco NX-OS" not in ansible_sysdescr'
