@@ -1,3 +1,4 @@
-ansible==2.8.3
-ansible-lint==4.1.0
-paramiko==2.6.0
+pybind11==2.4.2
+ydk==0.8.3
+ydk-models-ietf==0.1.5.post2
+ydk-models-openconfig==0.1.6.post1
