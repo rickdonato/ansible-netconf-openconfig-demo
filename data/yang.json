@@ -9,34 +9,10 @@
                 "vlans": {
                     "vlan": [
                         {
-                            "vlan-id": 1,
-                            "config": {
-                                "vlan-id": 1,
-                                "name": "default",
-                                "status": "ACTIVE"
-                            }
-                        },
-                        {
-                            "vlan-id": 1000,
-                            "config": {
-                                "vlan-id": 1000,
-                                "name": "prod1",
-                                "status": "ACTIVE"
-                            }
-                        },
-                        {
                             "vlan-id": 100,
                             "config": {
                                 "vlan-id": 100,
                                 "name": "vlan100",
-                                "status": "ACTIVE"
-                            }
-                        },
-                        {
-                            "vlan-id": 1020,
-                            "config": {
-                                "vlan-id": 1020,
-                                "name": "vlan1020",
                                 "status": "ACTIVE"
                             }
                         }

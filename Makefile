@@ -14,12 +14,18 @@ install-py3.6: ## Install Python3.6
 	sudo -H pip3 install --upgrade pip
 	curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3.6
 
-.PHONY: add-venv
-add-venv: ## Install virtualenv, create virtualenv, install requirements
+.PHONY: add-venv-py3.6
+add-venv-py3.6: ## Install virtualenv, create virtualenv, install requirements
 	pip3.6 install virtualenv
 	virtualenv -p /usr/bin/python3.6 venv
 	. ./venv/bin/activate
-	#@echo installing requirements.txt ...
 	venv/bin/pip3.6 install -q -r ./requirements.txt
+
+.PHONY: add-venv-py2.7
+add-venv-py2.7: ## Install virtualenv, create virtualenv, install requirements
+	pip2.7 install virtualenv
+	virtualenv -p /usr/bin/python2.7 venv
+	. ./venv/bin/activate
+	venv/bin/pip2.7 install -q -r ./requirements.txt
 
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
