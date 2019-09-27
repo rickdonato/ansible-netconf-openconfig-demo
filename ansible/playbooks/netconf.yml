@@ -1,0 +1,21 @@
+---
+- name: NETCONF
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: "Enable NETCONF"
+      connection: network_cli
+      junos_netconf:
+      when: ansible_network_os == 'junos'
+
+    - name: "Get Config via NETCONF"  
+      connection: netconf
+      netconf_get:
+         source: running
+         filter: "<configuration><system></system></configuration>"
+      register: nc_output
+
+    - debug:
+        msg: '{{ nc_output }}'
+        

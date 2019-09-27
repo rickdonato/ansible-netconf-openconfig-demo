@@ -1,13 +1,10 @@
 [all:vars]
-ansible_user=cisco
-ansible_ssh_pass=cisco
-ansible_connection=network_cli
-ansible_network_os=nxos
 
-[spine]
-spine1 ansible_host=172.29.132.21
-spine2 ansible_host=172.29.132.22
+[junos:vars]
+ansible_network_os=junos
+ansible_user=admin
+ansible_password=Juniper
 
-[leaf]
-leaf1 ansible_host=172.29.132.23
-leaf2 ansible_host=172.29.132.24
+[junos]
+qfx1 ansible_host=172.29.133.2
+
