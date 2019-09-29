@@ -7,7 +7,7 @@
     - name: "Enable NETCONF"
       connection: network_cli
       junos_netconf:
-      when: ansible_network_os == 'junos1'
+      when: ansible_network_os == 'junos'
 
     - name: "Get Config via NETCONF"  
       connection: netconf
@@ -19,24 +19,9 @@
     - name: "configure via netconf"
       connection: netconf
       netconf_config:
-          content: '<network-instances xmlns="http://openconfig.net/yang/network-instance">
-  <network-instance>
-    <name>default</name>
-    <config>
-      <name>default</name>
-    </config>
-    <vlans>
-      <vlan>
-        <vlan-id>100</vlan-id>
-        <config>
-          <vlan-id>100</vlan-id>
-          <name>vlan100</name>
-          <status>ACTIVE</status>
-        </config>
-      </vlan>
-    </vlans>
-  </network-instance>
-</network-instances>'
+        content: "{{ lookup('file', './config.xml') }}"
+      tags:
+      - config_vlan
 
     - debug:
         msg: '{{ nc_output }}'
