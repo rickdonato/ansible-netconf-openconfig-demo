@@ -23,6 +23,13 @@
       tags:
       - config_vlan
 
+    - name: "configure ntp via netconf"
+      connection: netconf
+      netconf_config:
+        content: "{{ lookup('file', './ntp.xml') }}"
+      tags:
+      - ntp 
+
     - debug:
         msg: '{{ nc_output }}'
         

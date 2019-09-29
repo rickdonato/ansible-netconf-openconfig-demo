@@ -1,18 +1,20 @@
-<network-instances xmlns="http://openconfig.net/yang/network-instance">
-   <network-instance>
-      <name>default</name>
-      <config>
+<configuration xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+   <network-instances xmlns="http://openconfig.net/yang/network-instance">
+      <network-instance>
          <name>default</name>
-      </config>
-      <vlans>
-         <vlan>
-            <vlan-id>100</vlan-id>
-            <config>
+         <config>
+            <name>default</name>
+         </config>
+         <vlans>
+            <vlan>
                <vlan-id>100</vlan-id>
-               <name>vlan100</name>
-               <status>ACTIVE</status>
-            </config>
-         </vlan>
-      </vlans>
-   </network-instance>
-</network-instances>
+               <config>
+                  <vlan-id>100</vlan-id>
+                  <name>vlan100</name>
+                  <status>ACTIVE</status>
+               </config>
+            </vlan>
+         </vlans>
+      </network-instance>
+   </network-instances>
+</configuration>
