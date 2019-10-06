@@ -1,0 +1,3 @@
+---
+- include: native.yml
+- include: netconf.yml

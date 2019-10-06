@@ -18,7 +18,8 @@
       xml:
         xmlstring: '{{ yang_xml.stdout }}'
         pretty_print : yes
-
+      delegate_to: localhost
+    
     - name: "Apply Configuration"
       connection: netconf
       netconf_config:

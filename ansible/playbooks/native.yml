@@ -4,9 +4,18 @@
   gather_facts: no
 
   tasks:
-    - name: Create VLAN
+    - name: Import Host Variables
+      include_vars:
+        file: host_vars/ios1.yml
+        name: vars
+         
+    - name: Display Intended Configuration
+      debug:
+        var: vars['openconfig-vlan:vlans'].vlan
+
+    - name: Apply Configuration
       ios_vlan:
-         vlan_id: "{{ item.config.vlan-id }}"
-         name: "{{ item.config.name }}"
+         vlan_id: "{{ item.config['vlan-id'] }}"
+         name: "{{ item.config['name'] }}"
          state: present
-      with_items: "{{ openconfig-vlan:vlans['vlan'] }}"
+      with_items: "{{ vars['openconfig-vlan:vlans'].vlan }}"
