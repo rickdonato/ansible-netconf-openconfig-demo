@@ -1,0 +1,12 @@
+---
+- name: Configure Devices via Native
+  hosts: ios
+  gather_facts: no
+
+  tasks:
+    - name: Create VLAN
+      ios_vlan:
+         vlan_id: "{{ item.config.vlan-id }}"
+         name: "{{ item.config.name }}"
+         state: present
+      with_items: "{{ openconfig-vlan:vlans['vlan'] }}"

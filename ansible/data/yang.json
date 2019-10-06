@@ -1,0 +1,30 @@
+{
+    "openconfig-vlan:vlans" : {
+        "vlan" : [
+        {
+            "vlan-id" : "1001",
+            "config" : {
+                "vlan-id" : 1001,
+                "name" : "test22",
+                "status" : "ACTIVE"
+            }
+        },
+        {
+            "vlan-id" : "101",
+            "config" : {
+                "vlan-id" : 101,
+                "name" : "test1",
+                "status" : "ACTIVE"
+            }
+        },
+        {
+            "vlan-id" : "102",
+            "config" : {
+                "vlan-id" : 102,
+                "name" : "test2",
+                "status" : "ACTIVE"
+            }
+        }
+        ]
+    }
+}

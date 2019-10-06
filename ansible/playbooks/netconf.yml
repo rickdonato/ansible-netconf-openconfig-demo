@@ -1,6 +1,6 @@
 ---
-- name: NETCONF
-  hosts: all
+- name: Configure Devices via NETCONF
+  hosts: netconf
   gather_facts: no
 
   tasks:
@@ -9,27 +9,20 @@
       junos_netconf:
       when: ansible_network_os == 'junos'
 
-    - name: "Get Config via NETCONF"  
-      connection: netconf
-      netconf_get:
-         source: running
-         filter: "<configuration><system></system></configuration>"
-      register: nc_output
+    - name: "Convert host_var to OpenConfig Yang XML"
+      command: "python ../scripts/convert.py -y ./host_vars/{{inventory_hostname}}.yml"
+      delegate_to: localhost
+      register: yang_xml
 
-    - name: "configure via netconf"
-      connection: netconf
-      netconf_config:
-        content: "{{ lookup('file', './config.xml') }}"
-      tags:
-      - config_vlan
+    - name: "Display generated OpenConfig Yang XML"
+      xml:
+        xmlstring: '{{ yang_xml.stdout }}'
+        pretty_print : yes
 
-    - name: "configure ntp via netconf"
+    - name: "Apply Configuration"
       connection: netconf
       netconf_config:
-        content: "{{ lookup('file', './ntp.xml') }}"
-      tags:
-      - ntp 
-
-    - debug:
-        msg: '{{ nc_output }}'
-        
+        content: |
+          <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+            {{ yang_xml.stdout }}
+          </config>

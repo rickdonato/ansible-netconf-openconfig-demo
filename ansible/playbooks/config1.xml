@@ -1,0 +1,10 @@
+    <vlans xmlns="http://openconfig.net/yang/vlan">
+            <vlan>
+                <vlan-id>102</vlan-id>
+                <config>
+                    <vlan-id>102</vlan-id>
+                    <name>test2</name>
+                    <status>ACTIVE</status>
+                </config>
+            </vlan>
+    </vlans>

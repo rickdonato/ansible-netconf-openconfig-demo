@@ -1,7 +1,6 @@
-# ansible-restconf-demo
-```
-pyang -o oc-model.jtox vlan/openconfig-vlan* interfaces/openconfig-if-ethernet.yang  interfaces/openconfig-if-aggregate.yang interfaces/openconfig-interfaces* types/* interfaces/openconfig-if-types.yang
-```
+# DRAFT 
 
-References:
-* https://github.com/mbj4668/pyang/wiki/XmlJson
+## Print Yang Model Tree
+```
+pyang -f tree oc-models/vlan/openconfig-vlan.yang -p oc-models/
+```
