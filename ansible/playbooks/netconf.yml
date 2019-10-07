@@ -10,7 +10,7 @@
       when: ansible_network_os == 'junos'
 
     - name: "Convert host_var to OpenConfig Yang XML"
-      command: "python ../scripts/convert.py -y ./host_vars/{{inventory_hostname}}.yml"
+      command: "python ../scripts/convert.py -y ./host_vars/{{ inventory_hostname }}.yml"
       delegate_to: localhost
       register: yang_xml
 
@@ -19,7 +19,7 @@
         xmlstring: '{{ yang_xml.stdout }}'
         pretty_print : yes
       delegate_to: localhost
-    
+
     - name: "Apply Configuration"
       connection: netconf
       netconf_config:

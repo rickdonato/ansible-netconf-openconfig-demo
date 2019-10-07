@@ -8,7 +8,7 @@
       include_vars:
         file: host_vars/ios1.yml
         name: vars
-         
+
     - name: Display Intended Configuration
       debug:
         var: vars['openconfig-vlan:vlans'].vlan
