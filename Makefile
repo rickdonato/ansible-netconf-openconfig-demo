@@ -5,7 +5,16 @@ help:
 	@grep '^[a-zA-Z]' $(MAKEFILE_LIST) | \
 	sort | \
 	awk -F ':.*?## ' 'NF==2 {printf "\033[36m  %-25s\033[0m %s\n", $$1, $$2}'
-	
+
+.PHONY: remove-yml-eol-spaces
+remove-yml-eol-spaces: ## Remove end of line spaces from yaml files
+	find ./ \( -name *.yaml -o -name *.yml \) | xargs sed -i  "s/\s *$$//g"
+
+.PHONY: lint
+lint: ## Perform linting against ansible yaml files
+	. ./venv/bin/activate
+	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
+
 .PHONY: install-py3.6
 install-py3.6: ## Install Python3.6
 	sudo add-apt-repository ppa:jonathonf/python-3.6
