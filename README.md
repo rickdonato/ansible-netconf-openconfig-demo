@@ -2,6 +2,7 @@
 This repo contains the code to configure the following devices via Ansible:
 * QFX - via NETCONF
 * IOSL2 - via native network modules (i.e ios_vlan)
+The key benfit of this demo is to abstract the required Ansible code needed to program NETCONF based devices via the use of OpenConfig YANG models.
 
 ## Ansible
 Below is Ansible folder/file structure.
