@@ -1,6 +1,13 @@
-# DRAFT 
+## Introduction
+TBC
 
-## Print Yang Model Tree
+## Ansible
+TBC
+
+## OpenConfig
+### Print Yang Model Tree
 ```
 pyang -f tree oc-models/vlan/openconfig-vlan.yang -p oc-models/
 ```
+## Steps
+TBC
