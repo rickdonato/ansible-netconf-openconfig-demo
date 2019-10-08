@@ -24,8 +24,40 @@ Below is Ansible folder/file structure.
 `-- scripts
     `-- convert.py
 ```
-* The inventory child groups define which hosts are run against which playbook.
-* The `netconf.yml` playbook converts the host_vars file into an XML based YANG model.
+The inventory child groups define which hosts are run against which playbook. Shown below:
+```
+[junos:vars]
+ansible_network_os=junos
+ansible_user=admin
+ansible_password=Juniper
+
+[ios:vars]
+ansible_network_os=ios
+ansible_user=cisco
+ansible_ssh_pass=cisco
+ansible_connection=network_cli
+
+[junos]
+qfx1 ansible_host=172.29.133.2
+
+[ios]
+ios1 ansible_host=172.29.133.3
+
+[native:children]
+ios
+
+[netconf:children]
+junos
+```
+
+The `netconf.yml` playbook converts the `host_vars` file into an XML based YANG model via a custom script `scripts/convert.py`.
+There is a potential you could look to use the yang ansible role. However, testing on this seems limited. I would recommend testing this though as this would "potentially" simplfy the code even further.
+
+To run the plays to configure both devices via native and NETCONF methods run the command,
+```
+cd ansible
+ansible-playbook -i inventory/hosts playbooks/master.yml
+```
 
 ## OpenConfig
 Though OpenConfig is a common data model based on YANG, this repo takes the OpenConfig model and converts it into YAML for use within the `host_vars` files. 
