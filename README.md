@@ -1,6 +1,6 @@
 ## Introduction
 This repo contains the code to configure the following devices via Ansible:
-* QFX - via NETCONF
+* QFX - via NETCONF and YANG OpenConfig models.
 * IOSL2 - via native network modules (i.e ios_vlan)
 
 The key benfit of this demo is to abstract the required Ansible code needed to program NETCONF based devices via the use of OpenConfig YANG models.
@@ -34,6 +34,13 @@ To print an ASCII representation of the YANG model, use the following command:
 ```
 pyang -f tree oc-models/vlan/openconfig-vlan.yang -p oc-models/
 ```
+
+The different representations of the models can be located within `data`. For the YAML representation please refer to the ansible `host_vars`.
+```
+data
+├── yang.json
+└── yang.xml
+```     
 ## Makefile
 The included Makefile provides the following options:
 ```
