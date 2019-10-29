@@ -53,11 +53,12 @@ junos
 The `netconf.yml` playbook converts the `host_vars` file into an XML based YANG model via a custom script `scripts/convert.py`.
 There is a potential you could look to use the yang ansible role. However, testing on this seems limited. However, as a next step I would recommend testing this role as it could "potentially" simplfy the code base down even further.
 
-To run the plays to configure both devices via native and NETCONF methods run the command,
+To run the plays to configure both devices via native and NETCONF methods run the command. The master playbook contains both the `native.yml` and `netconf.yml` playbooks. 
 ```
 cd ansible
 ansible-playbook -i inventory/hosts playbooks/master.yml
 ```
+
 
 ## OpenConfig
 Though OpenConfig is a common data model based on YANG, this repo takes the OpenConfig model and converts it into YAML for use within the `host_vars` files. 
