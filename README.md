@@ -63,8 +63,6 @@ ansible-playbook -i inventory/hosts playbooks/master.yml
 
 
 ## OpenConfig
-Though OpenConfig is a common data model based on YANG, this repo takes the OpenConfig model and converts it into YAML for use within the `host_vars` files. 
-
 To print an ASCII representation of the YANG model, use the following command:
 ```
 pyang -f tree oc-models/vlan/openconfig-vlan.yang -p oc-models/
@@ -75,6 +73,45 @@ The different representations of the models can be located within `data`. For th
 data
 ├── yang.json
 └── yang.xml
+
+To convert an OC based YANG model to YAML, I found the easiest way was to use JunOS to print the model as JSON, like so:
+```
+lab@fabric-01> show configuration openconfig-bgp:bgp | display json
+{
+    "openconfig-bgp:bgp" : {
+        "neighbors" : {
+            "neighbor" : [
+            {
+                "neighbor-address" : "192.168.1.2",
+                "config" : {
+                    "peer-as" : 110,
+                    "peer-group" : "OC"
+                }
+            }
+            ]
+        },
+        "peer-groups" : {
+            "peer-group" : [
+            {
+                "peer-group-name" : "OC",
+                "config" : {
+                    "local-as" : 104,
+                    "peer-type" : "EXTERNAL"
+                },
+                "apply-policy" : {
+                    "config" : {
+                        "import-policy" : ["bgp-in"],
+                        "export-policy" : ["bgp-out"]
+                    }
+                }
+            }
+            ]
+        }
+    }
+}
+```
+Then use a JSON to YAML convertor to get the data into the required YAML representation.
+
 ```     
 ## Makefile
 The included Makefile provides the following options:
