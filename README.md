@@ -75,6 +75,7 @@ data
 └── yang.xml
 
 To convert an OC based YANG model to YAML, I found the easiest way was to use JunOS to print the model as JSON, like so:
+
 ```
 lab@fabric-01> show configuration openconfig-bgp:bgp | display json
 {
@@ -110,6 +111,7 @@ lab@fabric-01> show configuration openconfig-bgp:bgp | display json
     }
 }
 ```
+
 Then use a JSON to YAML convertor to get the data into the required YAML representation.
 
 ```     
