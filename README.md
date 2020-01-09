@@ -73,7 +73,7 @@ The different representations of the models can be located within `data`. For th
 data
 ├── yang.json
 └── yang.xml
-
+```
 To convert an OC based YANG model to YAML, I found the easiest way was to use JunOS to print the model as JSON, like so:
 
 ```
