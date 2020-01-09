@@ -5,6 +5,8 @@ This repo contains the code to configure the following devices via Ansible:
 
 The key benfit of this demo is to abstract the required Ansible code needed to program NETCONF based devices via the use of OpenConfig YANG models.
 
+Note: The steps for installating OC within JunOS can be found at : https://www.juniper.net/documentation/en_US/junos/topics/task/installation/openconfig-installing.html
+
 ## Ansible
 Below is Ansible folder/file structure.
 ```
